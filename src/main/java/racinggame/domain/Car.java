@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Car {
     private static final int START_DISTANCE = 0;
     private static final int DEFAULT_ADD_DISTANCE = 1;
+    private static final int MOVE_ABLE_ENERGY = 4;
 
     private final CarName carName;
     private final Distance distance;
@@ -18,7 +19,9 @@ public class Car {
         this.distance = Distance.of(distance);
     }
 
-    public int move() {
+    public int move(int energy) {
+        if(energy < MOVE_ABLE_ENERGY)
+            return distance.getDistance();
         return distance.addDistance(DEFAULT_ADD_DISTANCE);
     }
 
