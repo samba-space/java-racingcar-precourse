@@ -32,6 +32,10 @@ public class Cars {
         return WinnerNames.of(copyCars);
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
     private void validateDuplicateCarName(List<Car> cars) {
         Set<Car> nonDuplicateCars = new HashSet<>(cars);
         if (cars.size() != nonDuplicateCars.size()) {
