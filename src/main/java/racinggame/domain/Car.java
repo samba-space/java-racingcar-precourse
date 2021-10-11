@@ -29,6 +29,10 @@ public class Car {
         return distance.addDistance(DEFAULT_ADD_DISTANCE);
     }
 
+    public boolean isLose(Car maxCar) {
+        return getDistance() < maxCar.getDistance();
+    }
+
     public int getDistance() {
         return distance.getDistance();
     }
@@ -56,9 +60,5 @@ public class Car {
                 "carName=" + carName +
                 ", distance=" + distance +
                 '}';
-    }
-
-    public boolean isLose(Car maxCar) {
-        return getDistance() < maxCar.getDistance();
     }
 }
