@@ -38,7 +38,6 @@ public class Distance {
             throw new IllegalArgumentException("[ERROR] 더할 거리가 1보다 작습니다.");
         }
         long addedDistance = (long) this.distance + distance;
-        System.out.println("addedDistance = " + addedDistance);
         if (addedDistance > Integer.MAX_VALUE) {
             throw new IllegalArgumentException("[ERROR] 이동 가능 거리를 초과했습니다.");
         }
