@@ -1,0 +1,44 @@
+package racinggame.domain;
+
+public class Distance {
+    private static final int MIN_DISTANCE = 0;
+    private static final int MIN_ADD_DISTANCE = 1;
+
+    private int distance;
+
+    public static Distance of(int distance) {
+        return new Distance(distance);
+    }
+
+    private Distance(int distance) {
+        validateDistance(distance);
+        this.distance = distance;
+    }
+
+    public int addDistance(int distance) {
+        validateAddDistance(distance);
+        this.distance += distance;
+        return this.distance;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    private void validateDistance(int distance) {
+        if (distance < MIN_DISTANCE) {
+            throw new IllegalArgumentException("[ERROR] 거리가 0보다 작습니다.");
+        }
+    }
+
+    private void validateAddDistance(int distance) {
+        if (distance < MIN_ADD_DISTANCE) {
+            throw new IllegalArgumentException("[ERROR] 더할 거리가 1보다 작습니다.");
+        }
+        long addedDistance = (long) this.distance + distance;
+        System.out.println("addedDistance = " + addedDistance);
+        if (addedDistance > Integer.MAX_VALUE) {
+            throw new IllegalArgumentException("[ERROR] 이동 가능 거리를 초과했습니다.");
+        }
+    }
+}
