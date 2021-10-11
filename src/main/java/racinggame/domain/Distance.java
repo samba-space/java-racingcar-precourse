@@ -1,5 +1,7 @@
 package racinggame.domain;
 
+import java.util.Objects;
+
 public class Distance {
     private static final int MIN_DISTANCE = 0;
     private static final int MIN_ADD_DISTANCE = 1;
@@ -40,5 +42,25 @@ public class Distance {
         if (addedDistance > Integer.MAX_VALUE) {
             throw new IllegalArgumentException("[ERROR] 이동 가능 거리를 초과했습니다.");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Distance distance1 = (Distance) o;
+        return getDistance() == distance1.getDistance();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getDistance());
+    }
+
+    @Override
+    public String toString() {
+        return "Distance{" +
+                "distance=" + distance +
+                '}';
     }
 }
