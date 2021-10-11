@@ -14,6 +14,10 @@ public class Car {
         return new Car(carName, START_DISTANCE);
     }
 
+    public static Car of(String carName, int distance) {
+        return new Car(carName, distance);
+    }
+
     private Car(String carName, int distance) {
         this.carName = CarName.of(carName);
         this.distance = Distance.of(distance);
@@ -23,6 +27,14 @@ public class Car {
         if(energy < MOVE_ABLE_ENERGY)
             return distance.getDistance();
         return distance.addDistance(DEFAULT_ADD_DISTANCE);
+    }
+
+    public int getDistance() {
+        return distance.getDistance();
+    }
+
+    public String getCarName() {
+        return carName.getName();
     }
 
     @Override
@@ -44,5 +56,9 @@ public class Car {
                 "carName=" + carName +
                 ", distance=" + distance +
                 '}';
+    }
+
+    public boolean isLose(Car maxCar) {
+        return getDistance() < maxCar.getDistance();
     }
 }
