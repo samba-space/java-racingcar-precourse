@@ -1,8 +1,8 @@
 package racinggame.domain;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import racinggame.utils.CommonValidator;
+
+import java.util.*;
 
 public class Cars {
     private List<Car> cars;
@@ -12,23 +12,24 @@ public class Cars {
     }
 
     private Cars(List<Car> cars) {
-        validateNullOrException(cars);
+        CommonValidator.validateNullOrEmpty(cars);
         validateDuplicateCarName(cars);
         this.cars = cars;
     }
 
     public void moveCars(List<Integer> randoms) {
-        validateNullOrException(randoms);
+        CommonValidator.validateNullOrEmpty(cars);
         validateRandomsSize(randoms);
         for (int i = 0; i < randoms.size(); ++i) {
             cars.get(i).move(randoms.get(i));
         }
     }
 
-    private <T> void validateNullOrException(List<T> params) {
-        if (params == null || params.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] params가 null이거나 empty입니다.");
-        }
+    public WinnerNames getWinners() {
+        List<Car> copyCars = new ArrayList<>(cars);
+        Car winnerCar = Collections.max(cars, Comparator.comparing(Car::getDistance));
+        copyCars.removeIf(car -> car.isLose(winnerCar));
+        return WinnerNames.of(copyCars);
     }
 
     private void validateDuplicateCarName(List<Car> cars) {

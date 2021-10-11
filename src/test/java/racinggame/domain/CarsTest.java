@@ -67,4 +67,20 @@ public class CarsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] randoms와 자동차 사이즈가 일치하지 않습니다.");
     }
+
+
+    @DisplayName("우승자를 선출한다.")
+    @Test
+    void 우승자_선출() {
+        //given
+        Cars cars = Cars.of(Arrays.asList(Car.ready("park"), Car.ready("kim"), Car.ready("song")));
+        cars.moveCars(Arrays.asList(5, 5, 1));
+        WinnerNames expectedWinnerNames = WinnerNames.of(Arrays.asList(Car.of("park", 1), Car.of("kim", 1)));
+
+        //when
+        WinnerNames winnerNames = cars.getWinners();
+
+        //then
+        assertThat(winnerNames).isEqualTo(expectedWinnerNames);
+    }
 }
