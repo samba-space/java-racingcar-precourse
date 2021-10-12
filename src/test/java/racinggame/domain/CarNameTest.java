@@ -15,7 +15,7 @@ public class CarNameTest {
     }
 
     @DisplayName("자동차 이름이 empty 또는 null일 경우 IllegalArgumentException이 발생한다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] name={0}")
     @NullAndEmptySource
     void 자동차_이름_null_or_empty_생성_비정상(String name) {
         Assertions.assertThatThrownBy(() -> CarName.of(name))

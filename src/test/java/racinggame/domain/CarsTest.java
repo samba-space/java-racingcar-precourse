@@ -26,7 +26,7 @@ public class CarsTest {
                 .hasMessage("[ERROR] 자동차 이름이 중복됐습니다.");
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] cars={0}")
     @NullAndEmptySource
     void 자동차목록_null_or_empty_에러발생(List<Car> cars) {
         assertThatThrownBy(() -> Cars.of(cars))

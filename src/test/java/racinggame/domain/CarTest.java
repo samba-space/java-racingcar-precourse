@@ -1,7 +1,5 @@
 package racinggame.domain;
 
-
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,12 +19,14 @@ public class CarTest {
     void 자동차_전진() {
         //given
         Car car = Car.ready("park");
+        int energy = 4;
+        int expectedDistance = car.getDistance() + 1;
 
         //when
-        int movedDistance = car.move(4);
+        int movedDistance = car.move(energy);
 
         //then
-        assertThat(movedDistance).isEqualTo(1);
+        assertThat(movedDistance).isEqualTo(expectedDistance);
     }
 
     @DisplayName("energy가 MOVE_ABLE_ENERGY 보다 작으면 스탑한다.")
@@ -34,12 +34,14 @@ public class CarTest {
     void 자동차_스탑() {
         //given
         Car car = Car.ready("park");
+        int energy = 3;
+        int expectedDistance = car.getDistance();
 
         //when
-        int movedDistance = car.move(3);
+        int movedDistance = car.move(energy);
 
         //then
-        assertThat(movedDistance).isEqualTo(0);
+        assertThat(movedDistance).isEqualTo(expectedDistance);
     }
 
     @DisplayName("자동차 거리를 비교한다.")
