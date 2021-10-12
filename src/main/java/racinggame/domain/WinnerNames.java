@@ -24,6 +24,10 @@ public class WinnerNames {
         return winnerNames;
     }
 
+    public List<String> getWinnerNames() {
+        return winnerNames;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,5 +39,12 @@ public class WinnerNames {
     @Override
     public int hashCode() {
         return Objects.hash(winnerNames);
+    }
+
+    @Override
+    public String toString() {
+        return "WinnerNames{" +
+                "winnerNames=" + winnerNames +
+                '}';
     }
 }
