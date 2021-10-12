@@ -2,23 +2,25 @@ package racinggame.domain;
 
 import racinggame.utils.CommonValidator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class WinnerNames {
     private final List<String> winnerNames;
-
-    public static WinnerNames of(List<Car> winnerCars) {
-        return new WinnerNames(winnerCars);
-    }
 
     private WinnerNames(List<Car> winnerCars) {
         CommonValidator.validateNullOrEmpty(winnerCars);
         this.winnerNames = mapWinnerNames(winnerCars);
     }
 
+    public static WinnerNames of(List<Car> winnerCars) {
+        return new WinnerNames(winnerCars);
+    }
+
     private List<String> mapWinnerNames(List<Car> winnerCars) {
         List<String> winnerNames = new ArrayList<>();
-        for (Car winnerCar: winnerCars) {
+        for (Car winnerCar : winnerCars) {
             winnerNames.add(winnerCar.getCarName());
         }
         return winnerNames;

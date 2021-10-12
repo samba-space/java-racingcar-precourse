@@ -10,6 +10,11 @@ public class Car {
     private final CarName carName;
     private final Distance distance;
 
+    private Car(String carName, int distance) {
+        this.carName = CarName.of(carName);
+        this.distance = Distance.of(distance);
+    }
+
     public static Car ready(String carName) {
         return new Car(carName, START_DISTANCE);
     }
@@ -18,13 +23,8 @@ public class Car {
         return new Car(carName, distance);
     }
 
-    private Car(String carName, int distance) {
-        this.carName = CarName.of(carName);
-        this.distance = Distance.of(distance);
-    }
-
     public int move(int energy) {
-        if(energy < MOVE_ABLE_ENERGY)
+        if (energy < MOVE_ABLE_ENERGY)
             return distance.getDistance();
         return distance.addDistance(DEFAULT_ADD_DISTANCE);
     }

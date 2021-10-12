@@ -5,16 +5,16 @@ import racinggame.utils.CommonValidator;
 import java.util.*;
 
 public class Cars {
-    private List<Car> cars;
-
-    public static Cars of(List<Car> cars) {
-        return new Cars(cars);
-    }
+    private final List<Car> cars;
 
     private Cars(List<Car> cars) {
         CommonValidator.validateNullOrEmpty(cars);
         validateDuplicateCarName(cars);
         this.cars = cars;
+    }
+
+    public static Cars of(List<Car> cars) {
+        return new Cars(cars);
     }
 
     public void moveCars(List<Integer> randoms) {

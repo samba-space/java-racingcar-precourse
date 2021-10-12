@@ -3,16 +3,15 @@ package racinggame.domain;
 import java.util.Objects;
 
 public class CarName {
-
     private final String name;
-
-    public static CarName of(String name) {
-        return new CarName(name);
-    }
 
     private CarName(String name) {
         validateCarName(name);
         this.name = name;
+    }
+
+    public static CarName of(String name) {
+        return new CarName(name);
     }
 
     private void validateCarName(String name) {

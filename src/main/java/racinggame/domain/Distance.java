@@ -8,13 +8,13 @@ public class Distance {
 
     private int distance;
 
-    public static Distance of(int distance) {
-        return new Distance(distance);
-    }
-
     private Distance(int distance) {
         validateDistance(distance);
         this.distance = distance;
+    }
+
+    public static Distance of(int distance) {
+        return new Distance(distance);
     }
 
     public int addDistance(int distance) {

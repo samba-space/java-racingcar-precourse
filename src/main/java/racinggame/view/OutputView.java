@@ -6,7 +6,8 @@ import racinggame.domain.WinnerNames;
 import java.util.List;
 
 public class OutputView {
-    private OutputView() {}
+    private OutputView() {
+    }
 
     public static void printExecution() {
         System.out.println("\n실행 결과");
