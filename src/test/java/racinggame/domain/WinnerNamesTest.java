@@ -1,6 +1,5 @@
 package racinggame.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -8,7 +7,8 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class WinnerNamesTest {
 
@@ -17,7 +17,7 @@ public class WinnerNamesTest {
         assertThatCode(() -> WinnerNames.of(Arrays.asList(Car.of("park", 5)))).doesNotThrowAnyException();
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] winnerCars={0}")
     @NullAndEmptySource
     void winnerCars_null_or_empty_에러발생(List<Car> winnerCars) {
         assertThatThrownBy(() -> WinnerNames.of(winnerCars))

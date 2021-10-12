@@ -18,7 +18,7 @@ public class Cars {
     }
 
     public void moveCars(List<Integer> randoms) {
-        CommonValidator.validateNullOrEmpty(cars);
+        CommonValidator.validateNullOrEmpty(randoms);
         validateRandomsSize(randoms);
         for (int i = 0; i < randoms.size(); ++i) {
             cars.get(i).move(randoms.get(i));

@@ -7,26 +7,26 @@ import java.util.List;
 import java.util.Objects;
 
 public class WinnerNames {
-    private final List<String> winnerNames;
+    private final List<CarName> winnerNames;
 
     private WinnerNames(List<Car> winnerCars) {
         CommonValidator.validateNullOrEmpty(winnerCars);
-        this.winnerNames = mapWinnerNames(winnerCars);
+        this.winnerNames = mapToWinnerNames(winnerCars);
     }
 
     public static WinnerNames of(List<Car> winnerCars) {
         return new WinnerNames(winnerCars);
     }
 
-    private List<String> mapWinnerNames(List<Car> winnerCars) {
-        List<String> winnerNames = new ArrayList<>();
+    private List<CarName> mapToWinnerNames(List<Car> winnerCars) {
+        List<CarName> winnerNames = new ArrayList<>();
         for (Car winnerCar : winnerCars) {
-            winnerNames.add(winnerCar.getCarName());
+            winnerNames.add(CarName.of(winnerCar.getCarName()));
         }
         return winnerNames;
     }
 
-    public List<String> getWinnerNames() {
+    public List<CarName> getWinnerNames() {
         return winnerNames;
     }
 
