@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class Distance {
     private static final int MIN_DISTANCE = 0;
-    private static final int MIN_ADD_DISTANCE = 1;
 
     private int distance;
 
@@ -13,14 +12,13 @@ public class Distance {
         this.distance = distance;
     }
 
-    public static Distance of(int distance) {
+    public static Distance from(int distance) {
         return new Distance(distance);
     }
 
-    public int addDistance(int distance) {
+    public void addDistance(int distance) {
         validateAddDistance(distance);
         this.distance += distance;
-        return this.distance;
     }
 
     public int getDistance() {
@@ -34,9 +32,7 @@ public class Distance {
     }
 
     private void validateAddDistance(int distance) {
-        if (distance < MIN_ADD_DISTANCE) {
-            throw new IllegalArgumentException("[ERROR] 더할 거리가 1보다 작습니다.");
-        }
+        validateDistance(distance);
         long addedDistance = (long) this.distance + distance;
         if (addedDistance > Integer.MAX_VALUE) {
             throw new IllegalArgumentException("[ERROR] 이동 가능 거리를 초과했습니다.");

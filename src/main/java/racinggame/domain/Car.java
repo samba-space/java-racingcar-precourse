@@ -1,21 +1,21 @@
 package racinggame.domain;
 
+import racinggame.commons.strategy.MoveStrategy;
+
 import java.util.Objects;
 
 public class Car {
     private static final int START_DISTANCE = 0;
-    private static final int DEFAULT_ADD_DISTANCE = 1;
-    private static final int MOVE_ABLE_ENERGY = 4;
 
     private final CarName carName;
     private final Distance distance;
 
     private Car(String carName, int distance) {
-        this.carName = CarName.of(carName);
-        this.distance = Distance.of(distance);
+        this.carName = CarName.from(carName);
+        this.distance = Distance.from(distance);
     }
 
-    public static Car ready(String carName) {
+    public static Car from(String carName) {
         return new Car(carName, START_DISTANCE);
     }
 
@@ -23,14 +23,14 @@ public class Car {
         return new Car(carName, distance);
     }
 
-    public int move(int energy) {
-        if (energy < MOVE_ABLE_ENERGY)
-            return distance.getDistance();
-        return distance.addDistance(DEFAULT_ADD_DISTANCE);
+    public void move(MoveStrategy moveStrategy) {
+        Objects.requireNonNull(moveStrategy, "[ERROR] moveStrategy가 null입니다.");
+        distance.addDistance(moveStrategy.getMoveDistance());
     }
 
-    public boolean isLose(Car maxCar) {
-        return getDistance() < maxCar.getDistance();
+    public boolean isLose(Car otherCar) {
+        Objects.requireNonNull(otherCar, "[ERROR] otherCar가 null입니다.");
+        return getDistance() < otherCar.getDistance();
     }
 
     public int getDistance() {

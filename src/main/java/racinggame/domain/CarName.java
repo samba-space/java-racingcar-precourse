@@ -3,6 +3,8 @@ package racinggame.domain;
 import java.util.Objects;
 
 public class CarName {
+    private static final int DEFAULT_NAME_SIZE = 5;
+
     private final String name;
 
     private CarName(String name) {
@@ -10,7 +12,7 @@ public class CarName {
         this.name = name;
     }
 
-    public static CarName of(String name) {
+    public static CarName from(String name) {
         return new CarName(name);
     }
 
@@ -19,7 +21,7 @@ public class CarName {
         if (targetName == null || targetName.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름이 empty 또는 null 입니다.");
         }
-        if (targetName.length() > 5) {
+        if (targetName.length() > DEFAULT_NAME_SIZE) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름이 5글자 초과입니다.");
         }
     }

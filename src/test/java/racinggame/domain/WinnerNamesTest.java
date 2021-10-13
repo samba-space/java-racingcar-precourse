@@ -14,13 +14,13 @@ public class WinnerNamesTest {
 
     @Test
     void 우승자이름_생성_정상() {
-        assertThatCode(() -> WinnerNames.of(Arrays.asList(Car.of("park", 5)))).doesNotThrowAnyException();
+        assertThatCode(() -> WinnerNames.from(Arrays.asList(Car.of("park", 5)))).doesNotThrowAnyException();
     }
 
     @ParameterizedTest(name = "[{index}] winnerCars={0}")
     @NullAndEmptySource
     void winnerCars_null_or_empty_에러발생(List<Car> winnerCars) {
-        assertThatThrownBy(() -> WinnerNames.of(winnerCars))
+        assertThatThrownBy(() -> WinnerNames.from(winnerCars))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] params가 null이거나 empty입니다.");
     }

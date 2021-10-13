@@ -36,8 +36,8 @@ public class InputView {
         List<Car> result = new ArrayList<>();
         String[] carNames = inputCarNames.split(",");
         for (String carName : carNames) {
-            result.add(Car.ready(carName.trim()));
+            result.add(Car.from(carName.trim()));
         }
-        return Cars.of(result);
+        return Cars.from(result);
     }
 }

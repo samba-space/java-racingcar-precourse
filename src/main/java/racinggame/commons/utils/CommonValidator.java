@@ -1,4 +1,4 @@
-package racinggame.utils;
+package racinggame.commons.utils;
 
 import java.util.List;
 

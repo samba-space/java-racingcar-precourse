@@ -1,37 +1,29 @@
 package racinggame.service;
 
-import nextstep.utils.Randoms;
+import racinggame.commons.strategy.MoveStrategy;
 import racinggame.domain.Cars;
 import racinggame.view.InputView;
 import racinggame.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CarGameService {
-    private static final int RANGE_START = 0;
-    private static final int RANGE_END = 9;
+    private final MoveStrategy moveStrategy;
 
-    public static CarGameService of() {
-        return new CarGameService();
+    public CarGameService(MoveStrategy moveStrategy) {
+        this.moveStrategy = moveStrategy;
+    }
+
+    public static CarGameService from(MoveStrategy moveStrategy) {
+        return new CarGameService(moveStrategy);
     }
 
     public void play() {
-        Cars cars = Cars.of(InputView.inputCarNames());
+        Cars cars = InputView.inputCarNames();
         int turnCount = InputView.inputTurn();
         OutputView.printExecution();
         for (int i = 0; i < turnCount; ++i) {
-            cars.moveCars(createRandoms(cars.getCars().size()));
+            cars.moveCars(car -> car.move(moveStrategy));
             OutputView.printTurnResult(cars.getCars());
         }
         OutputView.printWinners(cars.getWinners());
-    }
-
-    public List<Integer> createRandoms(int size) {
-        List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < size; ++i) {
-            result.add(Randoms.pickNumberInRange(RANGE_START, RANGE_END));
-        }
-        return result;
     }
 }
