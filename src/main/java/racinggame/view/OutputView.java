@@ -1,5 +1,6 @@
 package racinggame.view;
 
+import racinggame.commons.message.MessageType;
 import racinggame.domain.Car;
 import racinggame.domain.CarName;
 import racinggame.domain.WinnerNames;
@@ -12,17 +13,17 @@ public class OutputView {
     }
 
     public static void printExecution() {
-        System.out.println("\n실행 결과");
+        System.out.println(MessageType.OUTPUT_EXECUTION.get());
 
     }
 
     public static void printTurnResult(List<Car> cars) {
-        cars.forEach(car -> System.out.printf("%s : %s\n", car.getCarName(), mapToLine(car.getDistance())));
+        cars.forEach(car -> System.out.printf(MessageType.OUTPUT_TURN_RESULT_FORMAT.get(), car.getCarName(), mapToLine(car.getDistance())));
         System.out.println();
     }
 
     public static void printWinners(WinnerNames winnerNames) {
-        System.out.printf("최종 우승자는 %s 입니다.\n", String.join(", ", mapToStringList(winnerNames.getWinnerNames())));
+        System.out.printf(MessageType.OUTPUT_WINNER_FORMAT.get(), String.join(", ", mapToStringList(winnerNames.getWinnerNames())));
     }
 
     private static String mapToLine(int distance) {

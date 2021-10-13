@@ -1,10 +1,10 @@
 package racinggame.commons.utils;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import racinggame.commons.message.MessageType;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,6 +24,6 @@ public class ListUtilsTest {
     void 변환_에러발생(List<Integer> params) {
         assertThatThrownBy(() -> ListUtils.validateNullOrEmpty(params))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] params가 null이거나 empty입니다.");
+                .hasMessage(MessageType.ERROR_EMPTY_NULL.get());
     }
 }

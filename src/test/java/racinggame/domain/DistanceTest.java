@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racinggame.commons.message.MessageType;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -29,7 +30,7 @@ public class DistanceTest {
     void 거리_생성_비정상() {
         assertThatThrownBy(() -> Distance.from(-1))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 거리가 0보다 작습니다.");
+                .hasMessage(MessageType.ERROR_MIN_DISTANCE.get());
     }
 
     @DisplayName("거리가 0보다 큰 정수인 경우, 정상적으로 더해진다.")
@@ -52,7 +53,7 @@ public class DistanceTest {
     void 거리입력_0미만_거리_더하기_예외발생(int inputDistance) {
         assertThatThrownBy(() -> distance.addDistance(inputDistance))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 거리가 0보다 작습니다.");
+                .hasMessage(MessageType.ERROR_MIN_DISTANCE.get());
     }
 
     @DisplayName("기존 거리와 입력거리를 더한 수가 int max 범위를 넘은 경우 IllegalArgumentException이 발생한다.")
@@ -65,6 +66,6 @@ public class DistanceTest {
         //when, then
         assertThatThrownBy(() -> distance.addDistance(inputDistance))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 이동 가능 거리를 초과했습니다.");
+                .hasMessage(MessageType.ERROR_EXCESS_DISTANCE.get());
     }
 }

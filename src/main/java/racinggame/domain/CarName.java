@@ -1,5 +1,7 @@
 package racinggame.domain;
 
+import racinggame.commons.message.MessageType;
+
 import java.util.Objects;
 
 public class CarName {
@@ -19,10 +21,10 @@ public class CarName {
     private void validateCarName(String name) {
         String targetName = name != null ? name.trim() : null;
         if (targetName == null || targetName.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름이 empty 또는 null 입니다.");
+            throw new IllegalArgumentException(MessageType.ERROR_CAR_NAME_EMPTY_NULL.get());
         }
         if (targetName.length() > DEFAULT_NAME_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름이 5글자 초과입니다.");
+            throw new IllegalArgumentException(MessageType.ERROR_CAR_NAME_SIZE.get());
         }
     }
 

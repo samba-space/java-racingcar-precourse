@@ -1,5 +1,7 @@
 package racinggame.domain;
 
+import racinggame.commons.message.MessageType;
+
 import java.util.Objects;
 
 public class Distance {
@@ -27,7 +29,7 @@ public class Distance {
 
     private void validateDistance(int distance) {
         if (distance < MIN_DISTANCE) {
-            throw new IllegalArgumentException("[ERROR] 거리가 0보다 작습니다.");
+            throw new IllegalArgumentException(MessageType.ERROR_MIN_DISTANCE.get());
         }
     }
 
@@ -35,7 +37,7 @@ public class Distance {
         validateDistance(distance);
         long addedDistance = (long) this.distance + distance;
         if (addedDistance > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException("[ERROR] 이동 가능 거리를 초과했습니다.");
+            throw new IllegalArgumentException(MessageType.ERROR_EXCESS_DISTANCE.get());
         }
     }
 

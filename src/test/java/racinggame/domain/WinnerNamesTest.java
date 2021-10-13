@@ -3,6 +3,7 @@ package racinggame.domain;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import racinggame.commons.message.MessageType;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +23,6 @@ public class WinnerNamesTest {
     void winnerCars_null_or_empty_에러발생(List<Car> winnerCars) {
         assertThatThrownBy(() -> WinnerNames.from(winnerCars))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] params가 null이거나 empty입니다.");
+                .hasMessage(MessageType.ERROR_EMPTY_NULL.get());
     }
 }

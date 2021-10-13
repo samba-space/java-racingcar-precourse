@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import racinggame.commons.message.MessageType;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +34,7 @@ public class CarsTest {
     void 자동차_이름_중복_에러발생() {
         assertThatThrownBy(() -> Cars.from(Arrays.asList(Car.from("park"), Car.from("park"), Car.from("abc"))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 자동차 이름이 중복됐습니다.");
+                .hasMessage(MessageType.ERROR_DUP_CAR_NAME.get());
     }
 
     @ParameterizedTest(name = "[{index}] cars={0}")
@@ -41,7 +42,7 @@ public class CarsTest {
     void 자동차목록_null_or_empty_에러발생(List<Car> cars) {
         assertThatThrownBy(() -> Cars.from(cars))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] params가 null이거나 empty입니다.");
+                .hasMessage(MessageType.ERROR_EMPTY_NULL.get());
     }
 
     @DisplayName("자동차목록이 정상 이동한다.")
@@ -57,7 +58,7 @@ public class CarsTest {
         //when, then
         assertThatThrownBy(() -> cars.moveCars(null))
                 .isInstanceOf(NullPointerException.class)
-                .hasMessage("[ERROR] consumer가 null입니다.");
+                .hasMessage(MessageType.ERROR_PARAM_NULL.get());
     }
 
     @DisplayName("우승자를 선출한다.")

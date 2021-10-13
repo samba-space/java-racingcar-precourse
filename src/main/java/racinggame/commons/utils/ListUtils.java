@@ -1,14 +1,16 @@
 package racinggame.commons.utils;
 
+import racinggame.commons.message.MessageType;
+
 import java.util.List;
 
 public class ListUtils {
     private ListUtils() {
     }
 
-    public static <T extends List> void validateNullOrEmpty(T params) {
+    public static <T> void validateNullOrEmpty(List<T> params) {
         if (params == null || params.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] params가 null이거나 empty입니다.");
+            throw new IllegalArgumentException(MessageType.ERROR_EMPTY_NULL.get());
         }
     }
 }

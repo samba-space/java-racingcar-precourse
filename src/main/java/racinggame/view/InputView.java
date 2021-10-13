@@ -1,6 +1,7 @@
 package racinggame.view;
 
 import nextstep.utils.Console;
+import racinggame.commons.message.MessageType;
 import racinggame.domain.Car;
 import racinggame.domain.Cars;
 
@@ -8,21 +9,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
+    private static final String DELIMITER = ",";
+
     private InputView() {
     }
 
     public static Cars inputCarNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+        System.out.println(MessageType.INPUT_RACING_CAR.get());
         try {
             return mapToList(Console.readLine());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            System.out.printf(MessageType.ERROR_FORMAT.get(), e.getMessage());
             return inputCarNames();
         }
     }
 
     public static int inputTurn() {
-        System.out.println("시도할 회수는 몇회인가요?");
+        System.out.println(MessageType.INPUT_TURN_COUNT.get());
         String count = Console.readLine();
         try {
             return Integer.parseInt(count);
@@ -34,7 +37,7 @@ public class InputView {
 
     private static Cars mapToList(String inputCarNames) {
         List<Car> result = new ArrayList<>();
-        String[] carNames = inputCarNames.split(",");
+        String[] carNames = inputCarNames.split(DELIMITER);
         for (String carName : carNames) {
             result.add(Car.from(carName.trim()));
         }

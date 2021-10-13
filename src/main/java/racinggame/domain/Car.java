@@ -1,5 +1,6 @@
 package racinggame.domain;
 
+import racinggame.commons.message.MessageType;
 import racinggame.commons.strategy.MoveStrategy;
 
 import java.util.Objects;
@@ -24,12 +25,12 @@ public class Car {
     }
 
     public void move(MoveStrategy moveStrategy) {
-        Objects.requireNonNull(moveStrategy, "[ERROR] moveStrategy가 null입니다.");
+        Objects.requireNonNull(moveStrategy, MessageType.ERROR_PARAM_NULL.get());
         distance.addDistance(moveStrategy.getMoveDistance());
     }
 
     public boolean isLose(Car otherCar) {
-        Objects.requireNonNull(otherCar, "[ERROR] otherCar가 null입니다.");
+        Objects.requireNonNull(otherCar, MessageType.ERROR_PARAM_NULL.get());
         return getDistance() < otherCar.getDistance();
     }
 

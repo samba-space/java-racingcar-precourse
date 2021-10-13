@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racinggame.commons.message.MessageType;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -40,7 +41,7 @@ public class CarTest {
     void moveStrategy_null_전진_에러발생() {
         assertThatThrownBy(() -> car.move(null))
                 .isInstanceOf(NullPointerException.class)
-                .hasMessage("[ERROR] moveStrategy가 null입니다.");
+                .hasMessage(MessageType.ERROR_PARAM_NULL.get());
     }
 
     @DisplayName("자동차 거리를 비교한다.")
@@ -61,6 +62,6 @@ public class CarTest {
     void 상대_자동차_null_경우_비교_에러발생() {
         assertThatThrownBy(() -> car.isLose(null))
                 .isInstanceOf(NullPointerException.class)
-                .hasMessage("[ERROR] otherCar가 null입니다.");
+                .hasMessage(MessageType.ERROR_PARAM_NULL.get());
     }
 }

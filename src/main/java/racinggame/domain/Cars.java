@@ -1,6 +1,7 @@
 package racinggame.domain;
 
 
+import racinggame.commons.message.MessageType;
 import racinggame.commons.utils.ListUtils;
 
 import java.util.*;
@@ -23,7 +24,7 @@ public class Cars {
     }
 
     public void moveCars(Consumer<Car> consumer) {
-        Objects.requireNonNull(consumer, "[ERROR] consumer가 null입니다.");
+        Objects.requireNonNull(consumer, MessageType.ERROR_PARAM_NULL.get());
         for (Car car : cars) {
             consumer.accept(car);
         }
@@ -42,14 +43,14 @@ public class Cars {
 
     private void validateMinCarsSize(List<Car> cars) {
         if (cars.size() < MIN_CARS_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 자동차가 수가 " + MIN_CARS_SIZE + "보다 작습니다.");
+            throw new IllegalArgumentException(MessageType.ERROR_CAR_SIZE_ERROR.get());
         }
     }
 
     private void validateDuplicateCarName(List<Car> cars) {
         Set<Car> nonDuplicateCars = new HashSet<>(cars);
         if (cars.size() != nonDuplicateCars.size()) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름이 중복됐습니다.");
+            throw new IllegalArgumentException(MessageType.ERROR_DUP_CAR_NAME.get());
         }
     }
 }
