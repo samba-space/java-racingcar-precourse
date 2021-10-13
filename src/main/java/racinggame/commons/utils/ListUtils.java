@@ -2,8 +2,8 @@ package racinggame.commons.utils;
 
 import java.util.List;
 
-public class CommonValidator {
-    private CommonValidator() {
+public class ListUtils {
+    private ListUtils() {
     }
 
     public static <T extends List> void validateNullOrEmpty(T params) {

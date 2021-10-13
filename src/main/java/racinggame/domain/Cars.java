@@ -1,7 +1,7 @@
 package racinggame.domain;
 
 
-import racinggame.commons.utils.CommonValidator;
+import racinggame.commons.utils.ListUtils;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -12,8 +12,8 @@ public class Cars {
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {
-        CommonValidator.validateNullOrEmpty(cars);
-        validateOnlyOneCar(cars);
+        ListUtils.validateNullOrEmpty(cars);
+        validateMinCarsSize(cars);
         validateDuplicateCarName(cars);
         this.cars = cars;
     }
@@ -40,7 +40,7 @@ public class Cars {
         return Collections.unmodifiableList(cars);
     }
 
-    private void validateOnlyOneCar(List<Car> cars) {
+    private void validateMinCarsSize(List<Car> cars) {
         if (cars.size() < MIN_CARS_SIZE) {
             throw new IllegalArgumentException("[ERROR] 자동차가 수가 " + MIN_CARS_SIZE + "보다 작습니다.");
         }

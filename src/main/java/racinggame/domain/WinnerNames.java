@@ -1,6 +1,6 @@
 package racinggame.domain;
 
-import racinggame.commons.utils.CommonValidator;
+import racinggame.commons.utils.ListUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class WinnerNames {
     private final List<CarName> winnerNames;
 
     private WinnerNames(List<Car> winnerCars) {
-        CommonValidator.validateNullOrEmpty(winnerCars);
+        ListUtils.validateNullOrEmpty(winnerCars);
         this.winnerNames = mapToWinnerNames(winnerCars);
     }
 

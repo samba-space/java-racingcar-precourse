@@ -1,6 +1,7 @@
 package racinggame.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
@@ -21,6 +22,7 @@ public class CarGameServiceTest {
         carGameService = CarGameService.from(() -> 1);
     }
 
+    @DisplayName("play가 정상 실행된다.")
     @Test
     void play_정상() {
         //given
