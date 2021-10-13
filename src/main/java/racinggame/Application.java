@@ -1,7 +1,11 @@
 package racinggame;
 
+import racinggame.commons.strategy.RandomMoveStrategy;
+import racinggame.service.CarGameService;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO 자동차 경주 게임 구현
+        CarGameService carGameService = CarGameService.from(RandomMoveStrategy.of());
+        carGameService.play();
     }
 }

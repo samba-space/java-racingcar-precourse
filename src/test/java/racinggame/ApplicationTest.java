@@ -25,9 +25,41 @@ public class ApplicationTest extends NSTest {
     }
 
     @Test
+    void 복수_우승자() {
+        assertRandomTest(() -> {
+            run("pobi,woni", "1");
+            verify("pobi : -", "woni : -", "최종 우승자는 pobi, woni 입니다.");
+        }, MOVING_FORWARD, MOVING_FORWARD);
+    }
+
+    @Test
     void 이름에_대한_예외_처리() {
         assertSimpleTest(() -> {
             runNoLineFound("pobi,javaji");
+            verify(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 중복_이름에_대한_예외_처리() {
+        assertSimpleTest(() -> {
+            runNoLineFound("pobi,pobi");
+            verify(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 참가자가_한명인_경우_예외_처리() {
+        assertSimpleTest(() -> {
+            runNoLineFound("pobi");
+            verify(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 빈이름에_대한_예외_처리() {
+        assertSimpleTest(() -> {
+            runNoLineFound(" ");
             verify(ERROR_MESSAGE);
         });
     }
