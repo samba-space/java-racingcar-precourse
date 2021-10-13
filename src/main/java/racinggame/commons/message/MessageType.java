@@ -15,6 +15,7 @@ public enum MessageType {
     OUTPUT_EXECUTION("\n실행 결과"),
     OUTPUT_TURN_RESULT_FORMAT("%s : %s\n"),
     OUTPUT_WINNER_FORMAT("최종 우승자는 %s 입니다.\n"),
+    ERROR_NUMBER_FORMAT("숫자를 입력하세요."),
     ERROR_FORMAT("[ERROR] %s\n");
 
 

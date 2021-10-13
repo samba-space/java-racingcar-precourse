@@ -30,7 +30,7 @@ public class InputView {
         try {
             return Integer.parseInt(count);
         } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
+            System.out.printf(MessageType.ERROR_FORMAT.get(), MessageType.ERROR_NUMBER_FORMAT.get());
             return inputTurn();
         }
     }
